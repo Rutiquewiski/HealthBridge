@@ -18,45 +18,43 @@ function LoginPage() {
 
   return (
     <>
-      <div className="screen">
-        <Container
-          w="80%"
-          h="50%"
-          borderStyle="solid"
-          borderRadius="8px"
-          bgGradient="linear(to-l, blue.100, blue.400)"
-          justifyContent="center"
-          centerContent
-        >
-          <Text fontSize="3rem" m="15px">
-            HealthBridge
-          </Text>
-          <Input
-            variant="filled"
-            placeholder="Username"
-            m="5px"
-            w="75%"
-            value={usernameValue}
-            onChange={handleUsernameChange}
-          />
-          <Input
-            variant="filled"
-            placeholder="Password"
-            m="5px"
-            w="75%"
-            value={passwordValue}
-            onChange={handlePasswordChange}
-          />
-          <div className="buttons-div">
-            <Button m="1rem" colorScheme="blue" onClick={login}>
-              Login
-            </Button>
-            <Button m="1rem" colorScheme="blue">
-              Can't log in?
-            </Button>
-          </div>
-        </Container>
-      </div>
+      <Container
+        w="80%"
+        h="50%"
+        borderStyle="solid"
+        borderRadius="8px"
+        bgGradient="linear(to-l, blue.100, blue.400)"
+        justifyContent="center"
+        centerContent
+      >
+        <Text fontSize="3rem" m="15px">
+          HealthBridge
+        </Text>
+        <Input
+          variant="filled"
+          placeholder="Username"
+          m="5px"
+          w="75%"
+          value={usernameValue}
+          onChange={handleUsernameChange}
+        />
+        <Input
+          variant="filled"
+          placeholder="Password"
+          m="5px"
+          w="75%"
+          value={passwordValue}
+          onChange={handlePasswordChange}
+        />
+        <div className="buttons-div">
+          <Button m="1rem" colorScheme="blue" onClick={login}>
+            Login
+          </Button>
+          <Button m="1rem" colorScheme="blue">
+            Can't log in?
+          </Button>
+        </div>
+      </Container>
     </>
   );
 }

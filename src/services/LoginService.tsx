@@ -1,5 +1,5 @@
 import UserLoginData from "../interfaces/UserLoginData";
-import axios from "axios";
+import HTTP from "./HTTP";
 
 export function requestLogin(userData: UserLoginData) {
   const headers = {
@@ -7,9 +7,9 @@ export function requestLogin(userData: UserLoginData) {
     "Content-Type": "application/json",
   };
 
-  axios
-    .post("http://localhost:8080/api/key/login", userData, { headers: headers })
-    .then((response) => {
-      console.log(response);
-    });
+  HTTP.post("/api/key/login", userData, { headers: headers }).then(
+    (response) => {
+      localStorage.setItem("token", response.data.token);
+    }
+  );
 }
