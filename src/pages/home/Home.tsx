@@ -67,7 +67,7 @@ function Home() {
                     </Thead>
                     <Tbody>
                       {data_appt.map((appointment: any) => (
-                        <Tr>
+                        <Tr key={appointment.id}>
                           <Td>{appointment.date}</Td>
                           <Td>{appointment.dentist}</Td>
                           <Td>{appointment.patient}</Td>
@@ -98,7 +98,7 @@ function Home() {
                     </Thead>
                     <Tbody>
                       {data_appt.map((appointment: any) => (
-                        <Tr>
+                        <Tr key={appointment.id}>
                           <Td>{appointment.date}</Td>
                           <Td>{appointment.dentist}</Td>
                           <Td>{appointment.patient}</Td>
@@ -141,7 +141,7 @@ function Home() {
                 </Thead>
                 <Tbody>
                   {data_dent.map((dentist: any) => (
-                    <Tr>
+                    <Tr key={dentist.id}>
                       <Td>{dentist.name}</Td>
                       <Td>{dentist.phone}</Td>
                       <Td>{dentist.specialties}</Td>
@@ -166,7 +166,7 @@ function Home() {
                 </Thead>
                 <Tbody>
                   {data_doc.map((doc: any) => (
-                    <Tr>
+                    <Tr key={doc.id}>
                       <Td>{doc.name}</Td>
                       <Td>{doc.phone}</Td>
                       <Td>{doc.specialties}</Td>

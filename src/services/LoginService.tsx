@@ -13,3 +13,7 @@ export function requestLogin(userData: UserLoginData) {
     }
   );
 }
+
+export function requestLogout() {
+  localStorage.removeItem("token");
+}

@@ -1,5 +1,5 @@
 [
     {"id" : 1, "name" : "Doctor", "email" : "dco@email.com", "phone" : "11111111", "document": "1111111", "specialties": "Cardiology"},
-    {"id" : 1, "name" : "Doctor", "email" : "dco@email.com", "phone" : "11111111", "document": "1111111", "specialties": "Cardiology"},
-    {"id" : 1, "name" : "Doctor", "email" : "dco@email.com", "phone" : "11111111", "document": "1111111", "specialties": "Cardiology"}
+    {"id" : 2, "name" : "Doctor", "email" : "dco@email.com", "phone" : "11111111", "document": "1111111", "specialties": "Cardiology"},
+    {"id" : 3, "name" : "Doctor", "email" : "dco@email.com", "phone" : "11111111", "document": "1111111", "specialties": "Cardiology"}
 ]

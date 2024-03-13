@@ -1,6 +1,6 @@
 #root {
   margin: 0 auto;
-  background-image: url('../../../public/images/background.jpg');
+  background-image: url('./assets/background.jpg');
   background-size: cover;
   width: 100vw;
   height: 100vh;
