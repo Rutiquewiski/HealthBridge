@@ -11,7 +11,7 @@ import AppointmentTable from "../../components/tables/AppointmentTable";
 import DentistTable from "../../components/tables/DentistTable";
 import DoctorTable from "../../components/tables/DoctorTable";
 
-function Home() {
+function HomePage() {
   return (
     <>
       <Container
@@ -75,4 +75,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;
