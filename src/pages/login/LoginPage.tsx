@@ -2,6 +2,7 @@ import { Button, Container, Input, Text } from "@chakra-ui/react";
 import "./LoginPage.css";
 import { useState } from "react";
 import { requestLogin } from "../../services/LoginService";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [usernameValue, setUsernameValue] = useState("");
@@ -12,8 +13,11 @@ function LoginPage() {
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setPasswordValue(event.target.value);
 
+  const navigate = useNavigate();
+
   function login() {
     requestLogin({ username: usernameValue, password: passwordValue });
+    navigate("/", { replace: true });
   }
 
   return (

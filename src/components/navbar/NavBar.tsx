@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
   const Menus = [
-    { title: "Home", src: "Chart_fill" },
-    { title: "Professionals", src: "User", gap: true },
-    { title: "Patients ", src: "Folder" },
-    { title: "Appointments ", src: "Calendar" },
+    { title: "Home", src: "Chart_fill", path: "/" },
+    { title: "Professionals", src: "User", gap: true, path: "/professionals" },
+    { title: "Patients ", src: "Folder", path: "/patients" },
+    { title: "Appointments ", src: "Calendar", path: "/appointments" },
     { title: "Account Setting ", src: "Setting", gap: true },
   ];
   return (
@@ -26,20 +27,22 @@ function NavBar() {
           <div className="flex gap-x-4 items-center"></div>
           <ul className="pt-6">
             {Menus.map((Menu, index) => (
-              <li
-                key={index}
-                className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
+              <Link to={`${Menu.path}`} key={index}>
+                <li
+                  className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
               ${Menu.gap ? "mt-9" : "mt-2"} ${
-                  index === 0 && "bg-light-white"
-                } `}
-              >
-                <img src={`./src/assets/${Menu.src}.png`} />
-                <span
-                  className={`${!open && "hidden"} origin-left duration-200`}
+                    index === 0 && "bg-light-white"
+                  } `}
                 >
-                  {Menu.title}
-                </span>
-              </li>
+                  <img src={`./src/assets/${Menu.src}.png`} />
+
+                  <span
+                    className={`${!open && "hidden"} origin-left duration-200`}
+                  >
+                    {Menu.title}
+                  </span>
+                </li>
+              </Link>
             ))}
           </ul>
         </div>
