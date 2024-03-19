@@ -74,13 +74,13 @@ function LoginPage() {
         <div className="buttons-div">
           <Button
             m="1rem"
-            marginTop="0.75rem"
+            marginTop="0.3rem"
             colorScheme="blue"
             onClick={login}
           >
             Login
           </Button>
-          <Button m="1rem" marginTop="0.75rem" colorScheme="blue">
+          <Button m="1rem" marginTop="0.3rem" colorScheme="blue">
             Can't log in?
           </Button>
         </div>

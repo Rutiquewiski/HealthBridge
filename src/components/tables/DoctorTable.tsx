@@ -8,9 +8,19 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
-import data_doc from "../../../public/database-mock/database-doctors.json";
+
+import { useEffect, useState } from "react";
+import { getAllDoctors } from "../../services/DoctorService";
+import DoctorListingDTO from "../../interfaces/DoctorListingDTO";
 
 function DoctorTable() {
+  const [doctors, setDoctors] = useState<DoctorListingDTO[]>([]);
+
+  useEffect(() => {
+    getAllDoctors().then((response: any) => {
+      setDoctors(response.data.content);
+    });
+  }, []);
   return (
     <>
       <TableContainer>
@@ -22,15 +32,15 @@ function DoctorTable() {
             <Tr>
               <Th>Name</Th>
               <Th>Phone</Th>
-              <Th>Specialties</Th>
+              <Th>Email</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {data_doc.map((doc: any) => (
+            {doctors.map((doc: any) => (
               <Tr key={doc.id}>
                 <Td>{doc.name}</Td>
                 <Td>{doc.phone}</Td>
-                <Td>{doc.specialties}</Td>
+                <Td>{doc.email}</Td>
               </Tr>
             ))}
           </Tbody>

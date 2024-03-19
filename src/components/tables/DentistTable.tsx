@@ -9,9 +9,19 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
-import data_dent from "../../../public/database-mock/database-dentists.json";
+import DentistListingDTO from "../../interfaces/DentistListingDTO.ts";
+import { useEffect, useState } from "react";
+import { getAllDentists } from "../../services/DentistService";
 
 function DentistTable() {
+  const [dentists, setDentists] = useState<DentistListingDTO[]>([]);
+
+  useEffect(() => {
+    getAllDentists().then((response: any) => {
+      setDentists(response.data.content);
+    });
+  }, []);
+
   return (
     <>
       <TableContainer>
@@ -23,15 +33,15 @@ function DentistTable() {
             <Tr>
               <Th>Name</Th>
               <Th>Phone</Th>
-              <Th>Specialties</Th>
+              <Th>Email</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {data_dent.map((dentist: any) => (
+            {dentists.map((dentist: DentistListingDTO) => (
               <Tr key={dentist.id}>
                 <Td>{dentist.name}</Td>
                 <Td>{dentist.phone}</Td>
-                <Td>{dentist.specialties}</Td>
+                <Td>{dentist.email}</Td>
               </Tr>
             ))}
           </Tbody>
