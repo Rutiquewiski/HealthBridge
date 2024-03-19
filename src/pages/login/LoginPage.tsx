@@ -1,4 +1,11 @@
-import { Button, Container, Input, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Text,
+} from "@chakra-ui/react";
 import "./LoginPage.css";
 import { useState } from "react";
 import { requestLogin } from "../../services/LoginService";
@@ -12,6 +19,9 @@ function LoginPage() {
   const [passwordValue, setPasswordValue] = useState("");
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setPasswordValue(event.target.value);
+
+  const [show, setShow] = useState(false);
+  const handleShowPasswordClick = () => setShow(!show);
 
   const navigate = useNavigate();
 
@@ -31,30 +41,46 @@ function LoginPage() {
         justifyContent="center"
         centerContent
       >
-        <Text fontSize="3rem" m="15px">
+        <Text fontSize="3rem" m="15px" marginBottom="25px">
           HealthBridge
         </Text>
         <Input
           variant="filled"
           placeholder="Username"
           m="5px"
-          w="75%"
+          w="65%"
           value={usernameValue}
           onChange={handleUsernameChange}
         />
-        <Input
-          variant="filled"
-          placeholder="Password"
-          m="5px"
-          w="75%"
-          value={passwordValue}
-          onChange={handlePasswordChange}
-        />
+        <InputGroup m="5px" w="65%">
+          <Input
+            variant="filled"
+            placeholder="Password"
+            type="password"
+            value={passwordValue}
+            onChange={handlePasswordChange}
+          />
+          <InputRightElement width="4.5rem">
+            <Button
+              h="1.5rem"
+              size="sm"
+              onClick={handleShowPasswordClick}
+              backgroundColor="blue.100"
+            >
+              {show ? "Hide" : "Show"}
+            </Button>
+          </InputRightElement>
+        </InputGroup>
         <div className="buttons-div">
-          <Button m="1rem" colorScheme="blue" onClick={login}>
+          <Button
+            m="1rem"
+            marginTop="0.3rem"
+            colorScheme="blue"
+            onClick={login}
+          >
             Login
           </Button>
-          <Button m="1rem" colorScheme="blue">
+          <Button m="1rem" marginTop="0.3rem" colorScheme="blue">
             Can't log in?
           </Button>
         </div>
