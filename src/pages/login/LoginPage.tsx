@@ -56,7 +56,7 @@ function LoginPage() {
           <Input
             variant="filled"
             placeholder="Password"
-            type="password"
+            type={show ? "text" : "password"}
             value={passwordValue}
             onChange={handlePasswordChange}
           />
