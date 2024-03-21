@@ -8,10 +8,11 @@ export function requestLogin(userData: UserLoginData) {
     "Content-Type": "application/json",
   };
 
-  HTTP.post<LoginResponseDTO>("/api/key/login", userData, {
+  return HTTP.post<LoginResponseDTO>("/api/key/login", userData, {
     headers: headers,
   }).then((response) => {
     localStorage.setItem("token", response.data.token);
+    return response;
   });
 }
 
