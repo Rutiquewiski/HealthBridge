@@ -1,3 +1,4 @@
+import LoginResponseDTO from "../interfaces/LoginResponseDTO";
 import UserLoginData from "../interfaces/UserLoginData";
 import HTTP from "./HTTP";
 
@@ -7,11 +8,12 @@ export function requestLogin(userData: UserLoginData) {
     "Content-Type": "application/json",
   };
 
-  HTTP.post("/api/key/login", userData, { headers: headers }).then(
-    (response) => {
-      localStorage.setItem("token", response.data.token);
-    }
-  );
+  return HTTP.post<LoginResponseDTO>("/api/key/login", userData, {
+    headers: headers,
+  }).then((response) => {
+    localStorage.setItem("token", response.data.token);
+    return response;
+  });
 }
 
 export function requestLogout() {

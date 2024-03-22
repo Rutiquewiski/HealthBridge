@@ -9,7 +9,8 @@ import {
 import "./LoginPage.css";
 import { useState } from "react";
 import { requestLogin } from "../../services/LoginService";
-import { useNavigate } from "react-router-dom";
+import LoginResponseDTO from "../../interfaces/LoginResponseDTO";
+import { AxiosResponse } from "axios";
 
 function LoginPage() {
   const [usernameValue, setUsernameValue] = useState("");
@@ -23,11 +24,16 @@ function LoginPage() {
   const [show, setShow] = useState(false);
   const handleShowPasswordClick = () => setShow(!show);
 
-  const navigate = useNavigate();
-
   function login() {
-    requestLogin({ username: usernameValue, password: passwordValue });
-    navigate("/", { replace: true });
+    requestLogin({ username: usernameValue, password: passwordValue })
+      .then((response: AxiosResponse<LoginResponseDTO>) => {
+        if (response.status == 200) {
+          window.location.href = "/";
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
@@ -56,7 +62,7 @@ function LoginPage() {
           <Input
             variant="filled"
             placeholder="Password"
-            type="password"
+            type={show ? "text" : "password"}
             value={passwordValue}
             onChange={handlePasswordChange}
           />
