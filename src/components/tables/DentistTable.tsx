@@ -12,12 +12,14 @@ import {
 import DentistListingDTO from "../../interfaces/DentistListingDTO.ts";
 import { useEffect, useState } from "react";
 import { getAllDentists } from "../../services/DentistService";
+import { AxiosResponse } from "axios";
+import Pageable from "../../interfaces/Pageable.ts";
 
 function DentistTable() {
   const [dentists, setDentists] = useState<DentistListingDTO[]>([]);
 
   useEffect(() => {
-    getAllDentists().then((response: any) => {
+    getAllDentists().then((response: AxiosResponse<Pageable>) => {
       setDentists(response.data.content);
     });
   }, []);

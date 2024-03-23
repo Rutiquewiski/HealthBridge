@@ -7,9 +7,10 @@ import {
   TabPanel,
 } from "@chakra-ui/react";
 
-import AppointmentTable from "../../components/tables/AppointmentTable";
+import DentistAppointmentTable from "../../components/tables/DentistAppointmentTable";
 import DentistTable from "../../components/tables/DentistTable";
 import DoctorTable from "../../components/tables/DoctorTable";
+import DoctorAppointmentTable from "../../components/tables/DoctorAppointmentTable";
 
 function HomePage() {
   return (
@@ -41,10 +42,10 @@ function HomePage() {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <AppointmentTable></AppointmentTable>
+                <DentistAppointmentTable></DentistAppointmentTable>
               </TabPanel>
               <TabPanel>
-                <AppointmentTable></AppointmentTable>
+                <DoctorAppointmentTable></DoctorAppointmentTable>
               </TabPanel>
             </TabPanels>
           </Tabs>

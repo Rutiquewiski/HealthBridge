@@ -5,6 +5,7 @@ import {
   InputGroup,
   InputRightElement,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import "./LoginPage.css";
 import { useState } from "react";
@@ -24,6 +25,8 @@ function LoginPage() {
   const [show, setShow] = useState(false);
   const handleShowPasswordClick = () => setShow(!show);
 
+  const toast = useToast();
+
   function login() {
     requestLogin({ username: usernameValue, password: passwordValue })
       .then((response: AxiosResponse<LoginResponseDTO>) => {
@@ -32,7 +35,14 @@ function LoginPage() {
         }
       })
       .catch((error) => {
-        console.log(error);
+        toast({
+          title: "Login Error",
+          description: error.response.data,
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+          colorScheme: "red",
+        });
       });
   }
 
