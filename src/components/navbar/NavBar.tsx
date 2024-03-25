@@ -8,7 +8,7 @@ function NavBar() {
     { title: "Professionals", src: "User", gap: true, path: "/professionals" },
     { title: "Patients ", src: "Folder", path: "/patients" },
     { title: "Appointments ", src: "Calendar", path: "/appointments" },
-    { title: "Account Setting ", src: "Setting", gap: true },
+    { title: "Account Setting ", src: "Setting", gap: true, path: "/account" },
   ];
   return (
     <>
