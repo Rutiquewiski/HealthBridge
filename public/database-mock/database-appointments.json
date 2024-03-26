@@ -1,9 +1,0 @@
-[
-    {"id" : 1, "dentist" : "Dentista", "patient" : "Patient", "date" : "today", "status": "Confirmed"},
-    {"id" : 2, "dentist" : "Dentista", "patient" : "Patient", "date" : "today", "status": "Confirmed"},
-    {"id" : 3, "dentist" : "Dentista", "patient" : "Patient", "date" : "today", "status": "Confirmed"},
-    {"id" : 4, "dentist" : "Dentista", "patient" : "Patient", "date" : "today", "status": "Confirmed"},
-    {"id" : 5, "dentist" : "Dentista", "patient" : "Patient", "date" : "today", "status": "Confirmed"},
-    {"id" : 6, "dentist" : "Dentista", "patient" : "Patient", "date" : "today", "status": "Confirmed"},
-    {"id" : 7, "dentist" : "Dentista", "patient" : "Patient", "date" : "today", "status": "Confirmed"}
-]
