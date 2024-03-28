@@ -4,7 +4,8 @@ import PageLayout from "./PageLayout";
 import LoginPage from "./pages/login/LoginPage";
 import ProfessionalsPage from "./pages/professionals/ProfessionalsPage";
 import PatientsPage from "./pages/patients/PatientsPage";
-import AppointmentsPage from "./pages/Appointments/AppointmentsPage";
+import AppointmentsPage from "./pages/appointments/AppointmentsPage";
+import AccountPage from "./pages/account/AccountPage";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/appointments",
         element: <AppointmentsPage></AppointmentsPage>,
+      },
+      {
+        path: "/account",
+        element: <AccountPage></AccountPage>,
       },
     ],
   },

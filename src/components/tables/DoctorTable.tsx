@@ -12,12 +12,14 @@ import {
 import { useEffect, useState } from "react";
 import { getAllDoctors } from "../../services/DoctorService";
 import DoctorListingDTO from "../../interfaces/DoctorListingDTO";
+import { AxiosResponse } from "axios";
+import Pageable from "../../interfaces/Pageable";
 
 function DoctorTable() {
   const [doctors, setDoctors] = useState<DoctorListingDTO[]>([]);
 
   useEffect(() => {
-    getAllDoctors().then((response: any) => {
+    getAllDoctors().then((response: AxiosResponse<Pageable>) => {
       setDoctors(response.data.content);
     });
   }, []);
