@@ -21,7 +21,7 @@ function NavBar() {
     { title: "Professionals", src: "User", gap: true, path: "/professionals" },
     { title: "Patients", src: "Folder", path: "/patients" },
     { title: "Appointments", src: "Calendar", path: "/appointments" },
-    { title: "Account Setting", src: "Setting", gap: true, path: "/account" },
+    { title: "Settings", src: "Setting", gap: true, path: "/account" },
   ];
   return (
     <>
@@ -60,7 +60,7 @@ function NavBar() {
               className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4  mt-9`}
               onClick={onOpen}
             >
-              <img src={`./src/assets/Logo.png`} />
+              <img src={`./src/assets/logout.png`} />
 
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Logout
