@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
-import { getAllDoctors } from "../../services/DoctorService";
+import { getAllDoctors } from "../../services/ProfessionalService";
 import DoctorListingDTO from "../../interfaces/DoctorListingDTO";
 import { AxiosResponse } from "axios";
 import Pageable from "../../interfaces/Pageable";

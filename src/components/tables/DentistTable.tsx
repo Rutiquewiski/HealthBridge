@@ -11,7 +11,7 @@ import {
 
 import DentistListingDTO from "../../interfaces/DentistListingDTO.ts";
 import { useEffect, useState } from "react";
-import { getAllDentists } from "../../services/DentistService";
+import { getAllDentists } from "../../services/ProfessionalService.tsx";
 import { AxiosResponse } from "axios";
 import Pageable from "../../interfaces/Pageable.ts";
 
