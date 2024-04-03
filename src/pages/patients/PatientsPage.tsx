@@ -1,4 +1,5 @@
-import { Container } from "@chakra-ui/react";
+import { Button, Container } from "@chakra-ui/react";
+import PatientTable from "../../components/tables/PatientTable";
 
 function PatientsPage() {
   return (
@@ -12,7 +13,30 @@ function PatientsPage() {
         w="95vw"
         h="90vh"
       >
-        Patients
+        <Container
+          p="1rem"
+          maxW="100% "
+          w="100%"
+          h="100%"
+          bg="white"
+          borderStyle="solid"
+          borderColor="RGB(109, 187, 191)"
+          borderWidth="1px"
+          borderRadius="8px"
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-between"
+        >
+          <PatientTable></PatientTable>
+          <Container>
+            <Button w="40%" m="1rem" colorScheme="teal">
+              Register Patient
+            </Button>
+            <Button w="40%" m="1rem" colorScheme="teal">
+              Modify Patient
+            </Button>
+          </Container>
+        </Container>
       </Container>
     </>
   );
