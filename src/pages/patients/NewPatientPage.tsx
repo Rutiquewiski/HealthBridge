@@ -1,7 +1,6 @@
-import { Button, Container } from "@chakra-ui/react";
-import PatientTable from "../../components/tables/PatientTable";
+import { Container } from "@chakra-ui/react";
 
-function PatientsPage() {
+function NewPatientPage() {
   return (
     <>
       <Container
@@ -27,19 +26,11 @@ function PatientsPage() {
           flexDirection="column"
           justifyContent="space-between"
         >
-          <PatientTable></PatientTable>
-          <Container>
-            <Button w="40%" m="1rem" colorScheme="teal">
-              Register Patient
-            </Button>
-            <Button w="40%" m="1rem" colorScheme="teal">
-              Modify Patient
-            </Button>
-          </Container>
+          FORM HERE
         </Container>
       </Container>
     </>
   );
 }
 
-export default PatientsPage;
+export default NewPatientPage;

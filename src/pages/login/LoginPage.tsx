@@ -34,11 +34,11 @@ function LoginPage() {
           window.location.href = "/";
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         toast({
           title: "Login Error",
           description: error.response.data,
-          status: "success",
+          status: "error",
           duration: 9000,
           isClosable: true,
           colorScheme: "red",
