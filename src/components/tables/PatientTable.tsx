@@ -27,7 +27,7 @@ function PatientTable() {
     <>
       <TableContainer borderRadius="8px">
         <Table variant="striped" colorScheme="teal" overflowX="hidden">
-          <TableCaption fontSize="large" placement="top">
+          <TableCaption fontSize="x-large" placement="top">
             Registered Patients
           </TableCaption>
           <Thead>

@@ -29,7 +29,7 @@ function DoctorAppointmentTable() {
     <>
       <TableContainer>
         <Table variant="striped" colorScheme="teal" overflowX="hidden">
-          <TableCaption fontSize="large" placement="top">
+          <TableCaption fontSize="x-large" placement="top">
             Appointments
           </TableCaption>
           <Thead>
