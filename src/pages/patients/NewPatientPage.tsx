@@ -1,4 +1,5 @@
-import { Container } from "@chakra-ui/react";
+import { Container, FormLabel, Input, Textarea } from "@chakra-ui/react";
+import { Form } from "react-router-dom";
 
 function NewPatientPage() {
   return (
@@ -23,10 +24,41 @@ function NewPatientPage() {
           borderWidth="1px"
           borderRadius="8px"
           display="flex"
-          flexDirection="column"
+          flexDirection="row"
           justifyContent="space-between"
         >
-          FORM HERE
+          <Container p="1rem" minW="45%">
+            <Form>
+              <FormLabel>Name</FormLabel>
+              <Input mb="1rem" />
+              <FormLabel>E-mail</FormLabel>
+              <Input type="email" mb="1rem" />
+              <FormLabel>Phone</FormLabel>
+              <Input type="tel" mb="1rem" />
+              <FormLabel>Document</FormLabel>
+              <Input mb="1rem" />
+              <FormLabel>Medical History</FormLabel>
+              <Textarea mb="1rem" />
+            </Form>
+          </Container>
+          <Container p="1rem" minW="45%">
+            <Form>
+              <FormLabel>Street</FormLabel>
+              <Input mb="1rem" />
+              <FormLabel>Number</FormLabel>
+              <Input type="email" mb="1rem" />
+              <FormLabel>Complement</FormLabel>
+              <Input type="tel" mb="1rem" />
+              <FormLabel>Neighborhood</FormLabel>
+              <Input mb="1rem" />
+              <FormLabel>Postal Code</FormLabel>
+              <Input mb="1rem" />
+              <FormLabel>City</FormLabel>
+              <Input mb="1rem" />
+              <FormLabel>State</FormLabel>
+              <Input mb="1rem" />
+            </Form>
+          </Container>
         </Container>
       </Container>
     </>

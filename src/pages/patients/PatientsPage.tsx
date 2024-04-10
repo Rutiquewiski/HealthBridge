@@ -1,7 +1,9 @@
 import { Button, Container } from "@chakra-ui/react";
 import PatientTable from "../../components/tables/PatientTable";
+import { useNavigate } from "react-router-dom";
 
 function PatientsPage() {
+  const navigate = useNavigate();
   return (
     <>
       <Container
@@ -29,7 +31,12 @@ function PatientsPage() {
         >
           <PatientTable></PatientTable>
           <Container>
-            <Button w="40%" m="1rem" colorScheme="teal">
+            <Button
+              w="40%"
+              m="1rem"
+              colorScheme="teal"
+              onClick={() => navigate("/new-patient")}
+            >
               Register Patient
             </Button>
             <Button w="40%" m="1rem" colorScheme="teal">
