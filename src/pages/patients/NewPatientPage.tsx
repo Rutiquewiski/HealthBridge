@@ -1,7 +1,22 @@
 import { Container, FormLabel, Input, Textarea } from "@chakra-ui/react";
+import { useState } from "react";
 import { Form } from "react-router-dom";
 
 function NewPatientPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [document, setDocument] = useState("");
+  const [medicalHistory, setMedicalHistory] = useState("");
+
+  const [street, setStreet] = useState("");
+  const [number, setNumber] = useState("");
+  const [complement, setComplement] = useState("");
+  const [neighborhood, setNeighborhood] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+
   return (
     <>
       <Container
@@ -30,33 +45,95 @@ function NewPatientPage() {
           <Container p="1rem" minW="45%">
             <Form>
               <FormLabel>Name</FormLabel>
-              <Input mb="1rem" />
+              <Input
+                mb="1rem"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
               <FormLabel>E-mail</FormLabel>
-              <Input type="email" mb="1rem" />
+              <Input
+                type="email"
+                mb="1rem"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
               <FormLabel>Phone</FormLabel>
-              <Input type="tel" mb="1rem" />
+              <Input
+                type="tel"
+                mb="1rem"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+              />
               <FormLabel>Document</FormLabel>
-              <Input mb="1rem" />
+              <Input
+                mb="1rem"
+                value={document}
+                onChange={(e) => setDocument(e.target.value)}
+                required
+              />
               <FormLabel>Medical History</FormLabel>
-              <Textarea mb="1rem" />
+              <Textarea
+                height="350px"
+                maxHeight="350px"
+                mb="1rem"
+                value={medicalHistory}
+                onChange={(e) => setMedicalHistory(e.target.value)}
+              />
             </Form>
           </Container>
           <Container p="1rem" minW="45%">
             <Form>
               <FormLabel>Street</FormLabel>
-              <Input mb="1rem" />
+              <Input
+                mb="1rem"
+                value={street}
+                onChange={(e) => setStreet(e.target.value)}
+                required
+              />
               <FormLabel>Number</FormLabel>
-              <Input type="email" mb="1rem" />
+              <Input
+                mb="1rem"
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
+                required
+              />
               <FormLabel>Complement</FormLabel>
-              <Input type="tel" mb="1rem" />
+              <Input
+                mb="1rem"
+                value={complement}
+                onChange={(e) => setComplement(e.target.value)}
+              />
               <FormLabel>Neighborhood</FormLabel>
-              <Input mb="1rem" />
+              <Input
+                mb="1rem"
+                value={neighborhood}
+                onChange={(e) => setNeighborhood(e.target.value)}
+                required
+              />
               <FormLabel>Postal Code</FormLabel>
-              <Input mb="1rem" />
+              <Input
+                mb="1rem"
+                value={postalCode}
+                onChange={(e) => setPostalCode(e.target.value)}
+                required
+              />
               <FormLabel>City</FormLabel>
-              <Input mb="1rem" />
+              <Input
+                mb="1rem"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                required
+              />
               <FormLabel>State</FormLabel>
-              <Input mb="1rem" />
+              <Input
+                mb="1rem"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                required
+              />
             </Form>
           </Container>
         </Container>
