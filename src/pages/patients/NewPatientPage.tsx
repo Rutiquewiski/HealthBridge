@@ -1,6 +1,13 @@
-import { Container, FormLabel, Input, Textarea } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  FormLabel,
+  Input,
+  Textarea,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { Form } from "react-router-dom";
+import { registerPatient } from "../../services/PatientService";
 
 function NewPatientPage() {
   const [name, setName] = useState("");
@@ -16,6 +23,25 @@ function NewPatientPage() {
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
+
+  function handleSubmit() {
+    registerPatient({
+      name: name,
+      email: email,
+      phone: phone,
+      document: document,
+      medicalHistory: medicalHistory,
+      address: {
+        street_address: street,
+        neighborhood: neighborhood,
+        number: number,
+        complement: complement,
+        postal_code: postalCode,
+        city: city,
+        state: state,
+      },
+    });
+  }
 
   return (
     <>
@@ -135,6 +161,17 @@ function NewPatientPage() {
                 required
               />
             </Form>
+            <Container
+              display="flex"
+              justifyContent="center"
+              gap="2rem"
+              mt="1rem"
+            >
+              <Button colorScheme="red">Cancel</Button>
+              <Button colorScheme="teal" onClick={handleSubmit}>
+                Register
+              </Button>
+            </Container>
           </Container>
         </Container>
       </Container>
