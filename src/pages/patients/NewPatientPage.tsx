@@ -4,12 +4,15 @@ import {
   FormLabel,
   Input,
   Textarea,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Form } from "react-router-dom";
 import { registerPatient } from "../../services/PatientService";
 
 function NewPatientPage() {
+  const toast = useToast();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -24,23 +27,82 @@ function NewPatientPage() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
 
-  function handleSubmit() {
-    registerPatient({
-      name: name,
-      email: email,
-      phone: phone,
-      document: document,
-      medicalHistory: medicalHistory,
-      address: {
-        street_address: street,
-        neighborhood: neighborhood,
-        number: number,
-        complement: complement,
-        postal_code: postalCode,
-        city: city,
-        state: state,
-      },
-    });
+  function validateForm() {
+    if (
+      !name ||
+      !email ||
+      !phone ||
+      !document ||
+      !street ||
+      !number ||
+      !postalCode ||
+      !city ||
+      !state
+    ) {
+      toast({
+        title: "Please fill in all required fields",
+        status: "error",
+        isClosable: true,
+      });
+      return false; // Prevent form submission if any field is empty
+    }
+    return true; // Form is valid, proceed with submission
+  }
+
+  async function handleSubmit() {
+    if (!validateForm()) return; // Ends function is validation fails
+
+    try {
+      await registerPatient({
+        name,
+        email,
+        phone,
+        document,
+        medicalHistory,
+        address: {
+          street_address: street,
+          neighborhood,
+          number,
+          complement,
+          postal_code: postalCode,
+          city,
+          state,
+        },
+      });
+      toast({
+        title: "Patient registered successfully!",
+        status: "success",
+        isClosable: true,
+      });
+
+      clearFields();
+    } catch (error: any) {
+      toast({
+        title: "An error occurred",
+        description: error.response.data,
+        status: "error",
+        isClosable: true,
+      });
+    }
+  }
+
+  function handleCancel() {
+    // Handle form cancellation (e.g., navigate to previous page)
+  }
+
+  function clearFields() {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setDocument("");
+    setMedicalHistory("");
+    setStreet("");
+    setNumber("");
+    setComplement("");
+    setNeighborhood("");
+    setPostalCode("");
+    setCity("");
+    setState("");
   }
 
   return (
@@ -137,7 +199,6 @@ function NewPatientPage() {
                 mb="1rem"
                 value={neighborhood}
                 onChange={(e) => setNeighborhood(e.target.value)}
-                required
               />
               <FormLabel>Postal Code</FormLabel>
               <Input
