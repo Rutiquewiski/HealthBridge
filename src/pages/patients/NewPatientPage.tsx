@@ -29,11 +29,11 @@ function NewPatientPage() {
   const [document, setDocument] = useState("");
   const [medicalHistory, setMedicalHistory] = useState("");
 
-  const [street, setStreet] = useState("");
+  const [street_address, setStreet] = useState("");
   const [number, setNumber] = useState("");
   const [complement, setComplement] = useState("");
   const [neighborhood, setNeighborhood] = useState("");
-  const [postalCode, setPostalCode] = useState("");
+  const [postal_code, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
 
@@ -43,9 +43,9 @@ function NewPatientPage() {
       !email ||
       !phone ||
       !document ||
-      !street ||
+      !street_address ||
       !number ||
-      !postalCode ||
+      !postal_code ||
       !city ||
       !state
     ) {
@@ -70,17 +70,17 @@ function NewPatientPage() {
         document,
         medicalHistory,
         address: {
-          street_address: street,
+          street_address,
           neighborhood,
           number,
           complement,
-          postal_code: postalCode,
+          postal_code,
           city,
           state,
         },
       });
-      onOpen();
 
+      onOpen();
       clearFields();
     } catch (error: any) {
       toast({
@@ -183,7 +183,7 @@ function NewPatientPage() {
               <FormLabel>Street *</FormLabel>
               <Input
                 mb="1rem"
-                value={street}
+                value={street_address}
                 onChange={(e) => setStreet(e.target.value)}
                 required
               />
@@ -209,7 +209,7 @@ function NewPatientPage() {
               <FormLabel>Postal Code *</FormLabel>
               <Input
                 mb="1rem"
-                value={postalCode}
+                value={postal_code}
                 onChange={(e) => setPostalCode(e.target.value)}
                 required
               />
