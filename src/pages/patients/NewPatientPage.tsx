@@ -1,21 +1,115 @@
-import { Container, FormLabel, Input, Textarea } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  FormLabel,
+  Input,
+  Textarea,
+  useToast,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { useState } from "react";
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
+import { registerPatient } from "../../services/PatientService";
 
 function NewPatientPage() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [document, setDocument] = useState("");
   const [medicalHistory, setMedicalHistory] = useState("");
 
-  const [street, setStreet] = useState("");
+  const [street_address, setStreet] = useState("");
   const [number, setNumber] = useState("");
   const [complement, setComplement] = useState("");
   const [neighborhood, setNeighborhood] = useState("");
-  const [postalCode, setPostalCode] = useState("");
+  const [postal_code, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
+
+  function validateForm() {
+    if (
+      !name ||
+      !email ||
+      !phone ||
+      !document ||
+      !street_address ||
+      !number ||
+      !postal_code ||
+      !city ||
+      !state
+    ) {
+      toast({
+        title: "Please fill in all required fields",
+        status: "error",
+        isClosable: true,
+      });
+      return false; // Prevent form submission if any field is empty
+    }
+    return true; // Form is valid, proceed with submission
+  }
+
+  async function handleSubmit() {
+    if (!validateForm()) return; // Ends function is validation fails
+
+    try {
+      await registerPatient({
+        name,
+        email,
+        phone,
+        document,
+        medicalHistory,
+        address: {
+          street_address,
+          neighborhood,
+          number,
+          complement,
+          postal_code,
+          city,
+          state,
+        },
+      });
+
+      onOpen();
+      clearFields();
+    } catch (error: any) {
+      toast({
+        title: "An error occurred",
+        description: error.response.data,
+        status: "error",
+        isClosable: true,
+      });
+    }
+  }
+
+  function handleCancel() {
+    navigate("/patients");
+  }
+
+  function clearFields() {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setDocument("");
+    setMedicalHistory("");
+    setStreet("");
+    setNumber("");
+    setComplement("");
+    setNeighborhood("");
+    setPostalCode("");
+    setCity("");
+    setState("");
+  }
 
   return (
     <>
@@ -44,14 +138,14 @@ function NewPatientPage() {
         >
           <Container p="1rem" minW="45%">
             <Form>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>Name *</FormLabel>
               <Input
                 mb="1rem"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
               />
-              <FormLabel>E-mail</FormLabel>
+              <FormLabel>E-mail *</FormLabel>
               <Input
                 type="email"
                 mb="1rem"
@@ -59,7 +153,7 @@ function NewPatientPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <FormLabel>Phone</FormLabel>
+              <FormLabel>Phone *</FormLabel>
               <Input
                 type="tel"
                 mb="1rem"
@@ -67,7 +161,7 @@ function NewPatientPage() {
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
-              <FormLabel>Document</FormLabel>
+              <FormLabel>Document *</FormLabel>
               <Input
                 mb="1rem"
                 value={document}
@@ -86,14 +180,14 @@ function NewPatientPage() {
           </Container>
           <Container p="1rem" minW="45%">
             <Form>
-              <FormLabel>Street</FormLabel>
+              <FormLabel>Street *</FormLabel>
               <Input
                 mb="1rem"
-                value={street}
+                value={street_address}
                 onChange={(e) => setStreet(e.target.value)}
                 required
               />
-              <FormLabel>Number</FormLabel>
+              <FormLabel>Number *</FormLabel>
               <Input
                 mb="1rem"
                 value={number}
@@ -111,23 +205,22 @@ function NewPatientPage() {
                 mb="1rem"
                 value={neighborhood}
                 onChange={(e) => setNeighborhood(e.target.value)}
-                required
               />
-              <FormLabel>Postal Code</FormLabel>
+              <FormLabel>Postal Code *</FormLabel>
               <Input
                 mb="1rem"
-                value={postalCode}
+                value={postal_code}
                 onChange={(e) => setPostalCode(e.target.value)}
                 required
               />
-              <FormLabel>City</FormLabel>
+              <FormLabel>City *</FormLabel>
               <Input
                 mb="1rem"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 required
               />
-              <FormLabel>State</FormLabel>
+              <FormLabel>State *</FormLabel>
               <Input
                 mb="1rem"
                 value={state}
@@ -135,9 +228,35 @@ function NewPatientPage() {
                 required
               />
             </Form>
+            <Container
+              display="flex"
+              justifyContent="center"
+              gap="2rem"
+              mt="1rem"
+            >
+              <Button colorScheme="red" onClick={handleCancel}>
+                Cancel
+              </Button>
+              <Button colorScheme="teal" onClick={handleSubmit}>
+                Register
+              </Button>
+            </Container>
           </Container>
         </Container>
       </Container>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Success</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>Patient registered successfully!</ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 }
