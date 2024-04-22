@@ -35,6 +35,7 @@ function PatientTable() {
               <Th>Name</Th>
               <Th>Phone</Th>
               <Th>Email</Th>
+              <Th>Document</Th>
             </Tr>
           </Thead>
           <Tbody>
