@@ -34,7 +34,7 @@ function ProfessionalsPage() {
               w="40%"
               m="1rem"
               colorScheme="teal"
-              onClick={() => navigate("/new-patient")}
+              onClick={() => navigate("/new-professional")}
             >
               Register Professional
             </Button>
