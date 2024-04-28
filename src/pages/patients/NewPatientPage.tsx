@@ -60,7 +60,7 @@ function NewPatientPage() {
   }
 
   async function handleSubmit() {
-    if (!validateForm()) return; // Ends function is validation fails
+    if (!validateForm()) return; // Ends function is validation fails, preventing the request
 
     try {
       await registerPatient({
