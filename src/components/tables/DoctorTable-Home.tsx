@@ -10,10 +10,10 @@ import {
 } from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
+import { getAllDoctors } from "../../services/ProfessionalService";
+import DoctorListingDTO from "../../interfaces/DoctorListingDTO";
 import { AxiosResponse } from "axios";
 import Pageable from "../../interfaces/Pageable";
-import DoctorListingDTO from "../../interfaces/DoctorListingDTO";
-import { getAllDoctors } from "../../services/ProfessionalService";
 
 function DoctorTable() {
   const [doctors, setDoctors] = useState<DoctorListingDTO[]>([]);
@@ -25,9 +25,9 @@ function DoctorTable() {
   }, []);
   return (
     <>
-      <TableContainer borderRadius="8px">
-        <Table variant="striped" colorScheme="teal" overflowX="hidden">
-          <TableCaption fontSize="x-large" placement="top">
+      <TableContainer>
+        <Table variant="simple">
+          <TableCaption fontSize="large" placement="top">
             Registered Doctors
           </TableCaption>
           <Thead>
@@ -35,16 +35,14 @@ function DoctorTable() {
               <Th>Name</Th>
               <Th>Phone</Th>
               <Th>Email</Th>
-              <Th>Document</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {doctors.map((doctor: any) => (
-              <Tr key={doctor.id}>
-                <Td>{doctor.name}</Td>
-                <Td>{doctor.phone}</Td>
-                <Td>{doctor.email}</Td>
-                <Td>{doctor.document}</Td>
+            {doctors.map((doc: any) => (
+              <Tr key={doc.id}>
+                <Td>{doc.name}</Td>
+                <Td>{doc.phone}</Td>
+                <Td>{doc.email}</Td>
               </Tr>
             ))}
           </Tbody>

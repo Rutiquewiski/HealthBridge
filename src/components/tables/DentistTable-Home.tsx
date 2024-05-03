@@ -9,11 +9,11 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
+import DentistListingDTO from "../../interfaces/DentistListingDTO.ts";
 import { useEffect, useState } from "react";
+import { getAllDentists } from "../../services/ProfessionalService.tsx";
 import { AxiosResponse } from "axios";
-import Pageable from "../../interfaces/Pageable";
-import { getAllDentists } from "../../services/ProfessionalService";
-import DentistListingDTO from "../../interfaces/DentistListingDTO";
+import Pageable from "../../interfaces/Pageable.ts";
 
 function DentistTable() {
   const [dentists, setDentists] = useState<DentistListingDTO[]>([]);
@@ -23,11 +23,12 @@ function DentistTable() {
       setDentists(response.data.content);
     });
   }, []);
+
   return (
     <>
-      <TableContainer borderRadius="8px">
-        <Table variant="striped" colorScheme="teal" overflowX="hidden">
-          <TableCaption fontSize="x-large" placement="top">
+      <TableContainer>
+        <Table variant="simple">
+          <TableCaption fontSize="large" placement="top">
             Registered Dentists
           </TableCaption>
           <Thead>
@@ -35,16 +36,14 @@ function DentistTable() {
               <Th>Name</Th>
               <Th>Phone</Th>
               <Th>Email</Th>
-              <Th>Document</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {dentists.map((dentist: any) => (
+            {dentists.map((dentist: DentistListingDTO) => (
               <Tr key={dentist.id}>
                 <Td>{dentist.name}</Td>
                 <Td>{dentist.phone}</Td>
                 <Td>{dentist.email}</Td>
-                <Td>{dentist.document}</Td>
               </Tr>
             ))}
           </Tbody>

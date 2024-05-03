@@ -18,7 +18,7 @@ import { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import { registerPatient } from "../../services/PatientService";
 
-function NewPatientPage() {
+function NewDoctorPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const navigate = useNavigate();
@@ -93,7 +93,7 @@ function NewPatientPage() {
   }
 
   function handleCancel() {
-    navigate("/patients");
+    navigate("/professionals");
   }
 
   function clearFields() {
@@ -168,7 +168,7 @@ function NewPatientPage() {
                 onChange={(e) => setDocument(e.target.value)}
                 required
               />
-              <FormLabel>Medical History</FormLabel>
+              <FormLabel>Medical Specialties</FormLabel>
               <Textarea
                 height="350px"
                 maxHeight="350px"
@@ -261,4 +261,4 @@ function NewPatientPage() {
   );
 }
 
-export default NewPatientPage;
+export default NewDoctorPage;

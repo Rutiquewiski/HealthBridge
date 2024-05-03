@@ -8,8 +8,8 @@ import {
 } from "@chakra-ui/react";
 
 import DentistAppointmentTable from "../../components/tables/DentistAppointmentTable";
-import DentistTable from "../../components/tables/DentistTable";
-import DoctorTable from "../../components/tables/DoctorTable";
+import DentistTable from "../../components/tables/DentistTable-Home";
+import DoctorTable from "../../components/tables/DoctorTable-Home";
 import DoctorAppointmentTable from "../../components/tables/DoctorAppointmentTable";
 
 function HomePage() {
