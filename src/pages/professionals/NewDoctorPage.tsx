@@ -168,7 +168,7 @@ function NewDoctorPage() {
                 onChange={(e) => setDocument(e.target.value)}
                 required
               />
-              <FormLabel>Medical History</FormLabel>
+              <FormLabel>Medical Specialties</FormLabel>
               <Textarea
                 height="350px"
                 maxHeight="350px"

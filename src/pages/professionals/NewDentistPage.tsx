@@ -168,7 +168,7 @@ function NewDentistPage() {
                 onChange={(e) => setDocument(e.target.value)}
                 required
               />
-              <FormLabel>Medical History</FormLabel>
+              <FormLabel>Dental Specialties</FormLabel>
               <Textarea
                 height="350px"
                 maxHeight="350px"
