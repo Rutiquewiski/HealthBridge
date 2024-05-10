@@ -13,15 +13,24 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Select,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import { registerPatient } from "../../services/PatientService";
+import DentalSpecialtyListingDTO from "../../interfaces/DentalSpecialtyListingDTO";
+import { getDentalSpecialties } from "../../services/ProfessionalService";
+import { AxiosResponse } from "axios";
+import Pageable from "../../interfaces/Pageable";
 
 function NewDentistPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const navigate = useNavigate();
+
+  const [specialties, setSpecialties] = useState<DentalSpecialtyListingDTO[]>(
+    []
+  );
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -111,6 +120,13 @@ function NewDentistPage() {
     setState("");
   }
 
+  useEffect(() => {
+    getDentalSpecialties().then((response: AxiosResponse<Pageable>) => {
+      setSpecialties(response.data.content);
+      console.log(specialties);
+    });
+  }, []);
+
   return (
     <>
       <Container
@@ -169,13 +185,17 @@ function NewDentistPage() {
                 required
               />
               <FormLabel>Dental Specialties</FormLabel>
-              <Textarea
-                height="350px"
-                maxHeight="350px"
+              <Select
                 mb="1rem"
                 value={medicalHistory}
                 onChange={(e) => setMedicalHistory(e.target.value)}
-              />
+              >
+                {specialties.map((specialty) => (
+                  <option key={specialty.name} value={specialty.name}>
+                    {specialty.name}
+                  </option>
+                ))}
+              </Select>
             </Form>
           </Container>
           <Container p="1rem" minW="45%">
