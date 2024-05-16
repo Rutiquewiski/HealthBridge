@@ -1,3 +1,5 @@
+import DentistRegistrationDTO from "../interfaces/DentistRegistrationDTO";
+import DoctorRegistrationDTO from "../interfaces/DoctorRegistrationDTO";
 import Pageable from "../interfaces/Pageable";
 import HTTP from "./HTTP";
 
@@ -15,4 +17,12 @@ export function getDentalSpecialties() {
 
 export function getMedicalSpecialties() {
   return HTTP.get<Pageable>("/api/medical-specialties");
+}
+
+export function registerDentist(newDentist: DentistRegistrationDTO) {
+  return HTTP.post("/api/dentist", newDentist);
+}
+
+export function registerDoctor(newDoctor: DoctorRegistrationDTO) {
+  return HTTP.post("/api/doctor", newDoctor);
 }
