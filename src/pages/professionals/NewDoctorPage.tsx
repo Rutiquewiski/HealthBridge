@@ -14,14 +14,22 @@ import {
   ModalCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
-import { registerPatient } from "../../services/PatientService";
+import {
+  getMedicalSpecialties,
+  registerDoctor,
+} from "../../services/ProfessionalService";
+import MedicalSpecialtyDTO from "../../interfaces/MedicalSpecialtyDTO";
+import { AxiosResponse } from "axios";
+import Pageable from "../../interfaces/Pageable";
 
 function NewDoctorPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const navigate = useNavigate();
+
+  const [specialties, setSpecialties] = useState<MedicalSpecialtyDTO[]>([]);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -63,12 +71,12 @@ function NewDoctorPage() {
     if (!validateForm()) return; // Ends function is validation fails, preventing the request
 
     try {
-      await registerPatient({
+      await registerDoctor({
         name,
         email,
         phone,
         document,
-        medicalHistory,
+        specialties,
         address: {
           street_address,
           neighborhood,
@@ -110,6 +118,13 @@ function NewDoctorPage() {
     setCity("");
     setState("");
   }
+
+  useEffect(() => {
+    getMedicalSpecialties().then((response: AxiosResponse<Pageable>) => {
+      setSpecialties(response.data.content);
+      console.log(specialties);
+    });
+  }, []);
 
   return (
     <>

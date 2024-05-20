@@ -17,9 +17,11 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
-import { registerPatient } from "../../services/PatientService";
 import DentalSpecialtyListingDTO from "../../interfaces/DentalSpecialtyListingDTO";
-import { getDentalSpecialties } from "../../services/ProfessionalService";
+import {
+  getDentalSpecialties,
+  registerDentist,
+} from "../../services/ProfessionalService";
 import { AxiosResponse } from "axios";
 import Pageable from "../../interfaces/Pageable";
 
@@ -72,12 +74,12 @@ function NewDentistPage() {
     if (!validateForm()) return; // Ends function is validation fails, preventing the request
 
     try {
-      await registerPatient({
+      await registerDentist({
         name,
         email,
         phone,
         document,
-        medicalHistory,
+        specialties,
         address: {
           street_address,
           neighborhood,
