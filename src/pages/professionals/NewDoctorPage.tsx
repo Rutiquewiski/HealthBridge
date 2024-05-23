@@ -35,7 +35,7 @@ function NewDoctorPage() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [document, setDocument] = useState("");
-  const [medicalHistory, setMedicalHistory] = useState("");
+  const [medicalHistory, setMedicalHistory] = useState(""); //TODO: Change it to medical specialty
 
   const [street_address, setStreet] = useState("");
   const [number, setNumber] = useState("");
